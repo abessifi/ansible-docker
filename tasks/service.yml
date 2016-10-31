@@ -1,0 +1,20 @@
+---
+
+- name: Stop Docker
+  service:
+    name: docker
+    state: stopped
+  become: yes
+  tags:
+    - docker-stop-service
+    - docker-restart-service
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+  become: yes
+  tags:
+    - docker-setup
+    - docker-start-service
+    - docker-restart-service

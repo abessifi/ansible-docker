@@ -1,0 +1,6 @@
+---
+
+- name: Enable Docker daemon
+  service:
+    name: docker
+    enabled: yes

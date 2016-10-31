@@ -1,0 +1,38 @@
+---
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - "{{ debian.docker.depends_packages }}"
+
+- name: Purge older Docker packages if installed
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ debian.docker.legacy_packages }}"
+
+- name: Add GPG key
+  apt_key:
+    keyserver: "{{ debian.docker.key_server }}"
+    id: "{{ debian.docker.recv_keys }}"
+
+- name: Add Docker repository
+  template:
+    src: 'docker_apt_repo.j2'
+    dest: '/etc/apt/sources.list.d/docker.list'
+
+- name: Install specific version of Docker engine
+  apt:
+    name: "docker-engine={{ docker_pkg_version }}"
+    update_cache: yes
+  when: not docker_install_latest and docker_pkg_version is defined
+
+- name: Install latest version of Docker engine
+  apt:
+    name: 'docker-engine'
+    state: latest
+    update_cache: yes
+  when: docker_install_latest

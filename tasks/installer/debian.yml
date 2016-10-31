@@ -1,0 +1,11 @@
+---
+
+- name: Enable backports for Debian Wheezy
+  apt_repository:
+    repo: 'deb http://http.debian.net/debian wheezy-backports main'
+    state: present
+    # filename: 'backports.list' # Parameter added in Ansible v2.1
+    update_cache: no
+  when: ansible_distribution_release == "wheezy"
+
+- include: debian-common.yml

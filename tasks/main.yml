@@ -1,0 +1,24 @@
+---
+
+- include: validate.yml
+  tags:
+    - docker-setup
+
+- name: Install Docker and dependencies
+  include: "installer/{{ ansible_os_family | lower }}.yml"
+  when: docker_cmd_exists | failed
+  become: yes
+  tags:
+    - docker-setup
+
+- name: Configure Docker
+  include: configure.yml
+  when: docker_cmd_exists | failed
+  tags:
+    - docker-setup
+
+- name: Manage service
+  include: service.yml
+
+- name: Add tools
+  include: tools.yml

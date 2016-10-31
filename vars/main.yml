@@ -1,0 +1,13 @@
+---
+
+debian:
+  docker:
+    legacy_packages:
+      - lxc-docker
+      - docker.io
+    depends_packages:
+      - curl
+      - apt-transport-https
+      - ca-certificates
+    key_server: 'hkp://p80.pool.sks-keyservers.net:80'
+    recv_keys: '58118E89F3A912897C070ADBF76221572C52609D'

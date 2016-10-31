@@ -1,0 +1,7 @@
+---
+
+docker_install_latest: true
+
+docker_compose_tool_version: '1.6.2'
+
+docker_py_lib_version: '1.10.5'
