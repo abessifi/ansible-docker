@@ -32,7 +32,7 @@ None.
 ## Role Variables
 
 - **`docker_install_latest`** - Flag to perform the installation of the latest version of Docker engine (default: `true`)
-- **`docker_pkg_version`** - If defined, this variable should specify the docker engine package version to be installed according to the Linux distribution system you want to provision (default: not defined). E.g: to install Docker engine `1.12.0` on Debian Jessie, set `docker_pkg_version` to `1.12.1-0~jessie`. In this use case, `docker_install_latest` should be set to `false`.
+- **`docker_pkg_version`** - If defined, this variable should specify the docker engine package version to be installed according to the Linux distribution system you want to provision (default: not defined). E.g: to install Docker engine `1.12.0` on Debian Jessie, set `docker_pkg_version` to `1.12.1-0` which results after to a package name  like `1.12.0-0~jessie`. In this use case, `docker_install_latest` should be set to `false`.
 - **`docker_py_lib_version`** - The version of docker-py library to be installed (default: `1.10.5`)
 - **`docker_compose_tool_version`** - The version of docker-compose tool to be installed (default: `1.6.2`)
 
@@ -80,6 +80,25 @@ vagrant up
 ```
 
 Your testing VM is up and running with Docker !
+
+### Run acceptance tests
+
+Acceptance/Integration tests could be ran against the role using the magic `test-kitchen` tool. All written acceptance tests are in the **./test/integration/** directory.
+
+The `.kitchen.yml` file describes the testing configuration and the list of suite tests to run. By default, the instances will be converged with Ansible and ran in Vagrant virtual machines.
+
+To list the instances:
+
+    $ kitchen list
+
+    Instance                    Driver   Provisioner      Verifier  Transport  Last Action
+    default-debian-8-x64        Vagrant  AnsiblePlaybook  Busser    Ssh        <Not Created>
+    ...
+
+To run the default test suite, for instance, on a Ubuntu Trusty platform, run the following command:
+
+    $ kitchen test default-ubuntu-1404-x64
+
 
 ## Author Information
 

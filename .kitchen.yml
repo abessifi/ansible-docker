@@ -1,0 +1,42 @@
+---
+
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  require_ansible_repo: false
+  ansible_verbose: true
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+
+verifier:
+  ruby_bindir: '/usr/bin'
+
+platforms:
+  - name: 'debian_8_x64'
+    driver_config:
+      box: 'abessifi/debian-jessie-ansible'
+      network:
+        - [ 'private_network', { ip: '192.168.33.111' } ]
+  - name: 'ubuntu_14.04_x64'
+    driver_config:
+      box: 'abessifi/ubuntu-trusty-ansible'
+      network:
+        - [ 'private_network', { ip: '192.168.33.112' } ]
+
+suites:
+  - name: default
+    attributes:
+      tags:
+        - docker-setup
+  - name: install-specific-version
+    attributes:
+      tags:
+        - docker-setup
+  - name: install-tools
+    attributes:
+      tags:
+        - docker-setup
+        - docker-install-compose
