@@ -13,6 +13,7 @@ This is an Ansible role to install Docker engine on several GNU/Linux distributi
 
 ### Software Requirements
 
+- **Python 2.7** or higher (available in the targeted servers)
 - **Ansible 2.0** or higher (can be easily installed via `pip`. E.g: `sudo pip install ansible==2.0.0.2`)
 - **[Vagrant](https://www.vagrantup.com) 1.7** or higher (for testing purposes)
 - **Virtualbox** (for testing purposes with Vagrant)
@@ -22,6 +23,7 @@ This is an Ansible role to install Docker engine on several GNU/Linux distributi
 
 - Debian
 - Ubuntu
+- CentOS
 
 More infos in the role's metadata file.
 
@@ -32,7 +34,7 @@ None.
 ## Role Variables
 
 - **`docker_install_latest`** - Flag to perform the installation of the latest version of Docker engine (default: `true`)
-- **`docker_pkg_version`** - If defined, this variable should specify the docker engine package version to be installed according to the Linux distribution system you want to provision (default: not defined). E.g: to install Docker engine `1.12.0` on Debian Jessie, set `docker_pkg_version` to `1.12.1-0` which results after to a package name  like `1.12.0-0~jessie`. In this use case, `docker_install_latest` should be set to `false`.
+- **`docker_pkg_version`** - If defined, this variable should specify the docker engine package version to be installed according to the Linux distribution system you want to provision (default: not defined). E.g: to install Docker engine `1.12.0` on Debian Jessie, set `docker_pkg_version` to `1.12.1` which results to a package name like `1.12.0-0~jessie`. In this use case, `docker_install_latest` should be set to `false`.
 - **`docker_py_lib_version`** - The version of docker-py library to be installed (default: `1.10.5`)
 - **`docker_compose_tool_version`** - The version of docker-compose tool to be installed (default: `1.6.2`)
 

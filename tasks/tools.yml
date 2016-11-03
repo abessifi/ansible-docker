@@ -27,6 +27,7 @@
   become: yes
   tags:
     - docker-install-dockerpy
+    - docker-install-compose
 
 # NOTE: It is possible to install 'docker-compose' by getting the official script from
 # the github projet by I prefer using pip for that.

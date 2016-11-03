@@ -3,6 +3,6 @@
 - hosts: localhost
   vars:
     docker_install_latest: false
-    docker_pkg_version: '1.12.0-0'
+    docker_pkg_version: '1.12.0'
   roles:
     - role: ansible-docker

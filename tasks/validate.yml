@@ -8,7 +8,7 @@
 - name: Kernel version not supported
   fail:
     msg: "Your kernel must be 3.10 at minimum !"
-  when: linux_kenel_version.stdout | version_compare('3.10', '<=')
+  when: linux_kenel_version.stdout | version_compare('3.10', '<')
 
 - name: Check whether docker exists
   shell: "command -v docker"

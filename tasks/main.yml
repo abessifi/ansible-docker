@@ -17,7 +17,7 @@
   tags:
     - docker-setup
 
-- name: Manage service
+- name: manage service
   include: service.yml
 
 - name: Add tools

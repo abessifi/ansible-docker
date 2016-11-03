@@ -1,0 +1,24 @@
+---
+
+- name: Add Docker repository
+  template:
+    src: 'docker_yum_repo.j2'
+    dest: '/etc/yum.repos.d/docker.repo'
+
+- name: Install dependencies
+  yum:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - "{{ redhat.docker.depends_packages }}"
+
+- name: Install specific version of Docker engine
+  yum:
+    name: "docker-engine-{{ docker_pkg_version }}"
+  when: not docker_install_latest and docker_pkg_version is defined
+
+- name: Install latest version of Docker engine
+  yum:
+    name: 'docker-engine'
+    state: latest
+  when: docker_install_latest

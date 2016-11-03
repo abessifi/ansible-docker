@@ -11,9 +11,9 @@ galaxy_info:
     - name: Debian
       versions:
         - jessie
-    # - name: EL
-    #   versions:
-    #     - all
+    - name: CentOS
+      versions:
+        - 7
     # - name: Fedora
     #   versions:
     #     - all

@@ -2,6 +2,7 @@
 
 debian:
   docker:
+    default_apt_package_release: "0~{{ ansible_distribution_release }}"
     legacy_packages:
       - lxc-docker
       - docker.io
@@ -11,3 +12,8 @@ debian:
       - ca-certificates
     key_server: 'hkp://p80.pool.sks-keyservers.net:80'
     recv_keys: '58118E89F3A912897C070ADBF76221572C52609D'
+
+redhat:
+  docker:
+    depends_packages:
+      - curl
